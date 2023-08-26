@@ -1,0 +1,31 @@
+{
+  "name": "ict-294-praxisarbeit-strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-documentation": "^4.12.7",
+    "@strapi/plugin-i18n": "4.12.7",
+    "@strapi/plugin-users-permissions": "4.12.7",
+    "@strapi/strapi": "4.12.7",
+    "better-sqlite3": "8.5.0"
+  },
+  "author": {
+    "name": "Fokklz"
+  },
+  "strapi": {
+    "uuid": "1e9ee1f5-eeee-4121-aa1c-061302677f9a"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "Apache-2.0"
+}

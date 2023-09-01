@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-08-26T14:16:39.264Z"
+    "x-generation-date": "2023-08-31T09:09:21.344Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -86,6 +86,35 @@
           }
         }
       },
+      "TodoLocalizationRequest": {
+        "required": [
+          "title",
+          "locale"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "progressing": {
+            "type": "boolean"
+          },
+          "due": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finished": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "locale": {
+            "type": "string"
+          }
+        }
+      },
       "TodoRequest": {
         "type": "object",
         "required": [
@@ -114,6 +143,77 @@
               "finished": {
                 "type": "string",
                 "format": "date-time"
+              },
+              "locale": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TodoResponseDataObjectLocalized": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/Todo"
+          }
+        }
+      },
+      "TodoLocalizationResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/TodoResponseDataObjectLocalized"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      },
+      "TodoListResponseDataItemLocalized": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/Todo"
+          }
+        }
+      },
+      "TodoLocalizationListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TodoListResponseDataItemLocalized"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "minimum": 25
+                  },
+                  "pageCount": {
+                    "type": "integer",
+                    "maximum": 1
+                  },
+                  "total": {
+                    "type": "integer"
+                  }
+                }
               }
             }
           }
@@ -193,10 +293,6 @@
             "format": "date-time"
           },
           "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "publishedAt": {
             "type": "string",
             "format": "date-time"
           },
@@ -484,6 +580,20 @@
                 }
               }
             }
+          },
+          "localizations": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          },
+          "locale": {
+            "type": "string"
           }
         }
       },
@@ -1220,6 +1330,98 @@
           }
         ],
         "operationId": "delete/todos/{id}"
+      }
+    },
+    "/todos/{id}/localizations": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TodoLocalizationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Todo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "operationId": "post/todos/{id}/localizations",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoLocalizationRequest"
+              }
+            }
+          }
+        }
       }
     },
     "/upload": {

@@ -4,29 +4,59 @@
   "info": {
     "singularName": "todo",
     "pluralName": "todos",
-    "displayName": "Todo"
+    "displayName": "Todo",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "progressing": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "due": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "finished": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
